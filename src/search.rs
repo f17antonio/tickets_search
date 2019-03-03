@@ -137,8 +137,7 @@ fn get_timestamp_from_str(date_string : String) -> i64 {
             Ok(value) => value,
             Err(e) =>
                 {
-                    warn!("ERROR: {}", e);
-                    panic!("Incorrect date format")
+                    panic!("Incorrect date format. Error: {}", e)
                 }
         };
 

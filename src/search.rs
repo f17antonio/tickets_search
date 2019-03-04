@@ -132,14 +132,15 @@ fn get_arrival_data(arrival_data_string: String) -> ArrivalData {
 }
 
 fn get_timestamp_from_str(date_string : String) -> i64 {
-    let datetime =
+    let datetime_timestamp =
         match Utc.datetime_from_str(&format!("{} 00:00:00", date_string), "%Y-%m-%d %H:%M:%S") {
-            Ok(value) => value,
+            Ok(value) => value.timestamp(),
             Err(e) =>
                 {
-                    panic!("Incorrect date format. Error: {}", e)
+                    warn!("Incorrect date format. Error: {}", e);
+                    0
                 }
         };
 
-    return datetime.timestamp();
+    return datetime_timestamp;
 }
